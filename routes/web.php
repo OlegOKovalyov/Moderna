@@ -18,3 +18,29 @@
 Route::get('/', function () {
     return view('index');
 });
+
+// Правило для главной страницы сайта
+Route::get('/', function () {
+    return view('index')->with('description', 'Moderna - Главная страница')
+                        ->with('title', 'Moderna - Главная страница');
+});
+
+/*
+ * Альтернативное написание того же самого правила для главной страницы сайта:
+Route::get('/', function () {
+    return view('index', ['description' => 'Moderna - Главная страница', 
+                            'title' => 'Moderna - Главная страница']);
+});
+
+Route::get('/', function () {
+    $data = array('description' => 'Moderna - Главная страница', 
+                  'title' => 'Moderna - Главная страница');
+    return view('index', $data);
+});*/
+
+// Правило для других страниц сайта
+Route::get('/{page}', function ($page) {
+    $data = array('description' => 'Moderna - ' . $page, 
+                  'title' => 'Moderna - ' . $page);
+    return view($page, $data);
+});
